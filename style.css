@@ -44,6 +44,7 @@ section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: 
 /* TRAINERS */
 .trainers { display: flex; gap: 20px; flex-wrap: wrap; }
 .trainer { flex: 1; min-width: 250px; text-align: center; }
+.trainer img { width: 150px; height: 150px; object-fit: cover; }
 .trainer h3 { margin-top: 10px; }
 
 /* PRICING */

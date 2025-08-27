@@ -9,7 +9,18 @@
 <body>
   <!-- HEADER -->
   <header>
-    <h1>Gujjar Fitness Club</h1>
+    <div class="logo">
+      <div class="logo-icon">
+        <div class="dumbbell">
+          <div class="weight"></div>
+          <div class="bar"></div>
+          <div class="weight"></div>
+        </div>
+      </div>
+      <div class="logo-text">
+        <span class="brand-name">Gujjar Fitness Club</span>
+      </div>
+    </div>
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
@@ -40,6 +51,37 @@
         <p>We are committed to helping you achieve your fitness goals with state-of-the-art equipment, expert trainers, and a motivating atmosphere. Whether you’re a beginner or a pro, GymFit is your second home.</p>
       </div>
     </div>
+    
+    <!-- EQUIPMENT GALLERY -->
+    <div class="equipment-gallery">
+      <h3>Our Premium Equipment</h3>
+      <div class="equipment-grid">
+        <div class="equipment-item animate-card">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400" alt="Dumbbells">
+          <h4>Free Weights</h4>
+        </div>
+        <div class="equipment-item animate-card">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=400" alt="Treadmill">
+          <h4>Cardio Machines</h4>
+        </div>
+        <div class="equipment-item animate-card">
+          <img src="https://images.unsplash.com/photo-1583500178690-f7fd1d14a8de?q=80&w=400" alt="Cable Machine">
+          <h4>Cable Systems</h4>
+        </div>
+        <div class="equipment-item animate-card">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=400" alt="Bench Press">
+          <h4>Strength Training</h4>
+        </div>
+        <div class="equipment-item animate-card">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=400" alt="Rowing Machine">
+          <h4>Rowing Machines</h4>
+        </div>
+        <div class="equipment-item animate-card">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=400" alt="Functional Training">
+          <h4>Functional Area</h4>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- SERVICES -->
@@ -53,12 +95,56 @@
     </div>
   </section>
 
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stat-item">
+      <div class="stat-number" data-target="500">0</div>
+      <p>Happy Members</p>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="50">0</div>
+      <p>Expert Trainers</p>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="1000">0</div>
+      <p>Workouts Completed</p>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="5">0</div>
+      <p>Years Experience</p>
+    </div>
+  </section>
+
   <!-- TRAINERS -->
   <section id="trainers">
     <h2>Our Trainers</h2>
     <div class="trainers">
-      <div class="trainer"><img src="IMG_1552.JPG" alt=""><h3>Ashish Gurjar</h3><p>Strength Coach</p></div>
-          </div>
+      <div class="trainer animate-card"><img src="IMG_1552.JPG" alt=""><h3>Ashish Gurjar</h3><p>Strength Coach</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <h2>What Our Members Say</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial active">
+        <p>"Best gym in the city! Amazing trainers and great atmosphere."</p>
+        <h4>- Rahul Sharma</h4>
+      </div>
+      <div class="testimonial">
+        <p>"Lost 15kg in 6 months. Highly recommend Gujjar Fitness!"</p>
+        <h4>- Priya Singh</h4>
+      </div>
+      <div class="testimonial">
+        <p>"Professional trainers and excellent equipment. Love it here!"</p>
+        <h4>- Amit Kumar</h4>
+      </div>
+    </div>
+    <div class="testimonial-dots">
+      <span class="dot active" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
   </section>
 
   <!-- PRICING -->
@@ -86,5 +172,63 @@
   <footer>
     <p>&copy; 2025 GymFit. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Counter Animation
+    function animateCounter() {
+      const counters = document.querySelectorAll('.stat-number');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / 200;
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(() => animateCounter(), 1);
+        } else {
+          counter.innerText = target;
+        }
+      });
+    }
+
+    // Testimonial Slider
+    let slideIndex = 1;
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    function showSlides(n) {
+      const slides = document.getElementsByClassName('testimonial');
+      const dots = document.getElementsByClassName('dot');
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('active');
+      }
+      slides[slideIndex - 1].classList.add('active');
+      dots[slideIndex - 1].classList.add('active');
+    }
+
+    // Auto slide testimonials
+    setInterval(() => {
+      slideIndex++;
+      showSlides(slideIndex);
+    }, 4000);
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          if (entry.target.classList.contains('stats')) {
+            animateCounter();
+          }
+        }
+      });
+    });
+
+    document.querySelectorAll('.animate-card, .stats, .service').forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
